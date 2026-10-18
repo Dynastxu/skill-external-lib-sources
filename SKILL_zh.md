@@ -49,41 +49,7 @@ pwsh -NoProfile -File path/to/scripts/libsrc.ps1 <命令> [参数]
 
 ### 输出
 
-`libs`（项目级）：
-
-```
-# scope : project (IntelliJ Gradle model)
-# model : C:\Users\...\libraries.xml
-# 86 libraries (84 with sources)
-com.google.guava:guava  33.6.0-jre  src
-...
-```
-
-`find`：
-
-```
-# scope: project (IntelliJ model); 1 of 86 libraries, 1 with sources
-com.google.guava:guava:33.6.0-jre!com.google.common.collect.ImmutableList
-```
-
 `grep` —— 按文件分组，路径在文件头，`:` 是命中行，`-` 是上下文行：
-
-```
-# scope: project (IntelliJ model); 1 of 86 libraries, 1 with sources
-== com.google.guava:guava:33.6.0-jre!com/google/common/collect/ImmutableList.java (1 match)
-64- @SuppressWarnings("serial")
-65: public abstract class ImmutableList<E> extends ImmutableCollection<E>
-66-     implements List<E>, RandomAccess {
-```
-
-`show`：
-
-```
-# com.google.guava:guava:33.6.0-jre!com/google/common/collect/ImmutableList.java  (951 lines)
-    1: /*
-    2:  * Copyright (C) 2007 The Guava Authors
-...
-```
 
 `src` 表示有源码包；`bin` 表示只有二进制 jar。源码命令会跳过 `bin` 库。
 
@@ -108,5 +74,3 @@ com.google.guava:guava:33.6.0-jre!com.google.common.collect.ImmutableList
 - “打印这个类” → `show com.google.guava:guava:33.6.0-jre!com.google.common.collect.ImmutableList -Lines 1-80`
 - “列出 Guava 的 collection 类” → `list com.google.common.collect -Lib guava -Max 20`
 - “本机缓存了哪些库？” → `libs -Global`
-
-Minecraft 与 NeoForge 自身源码请使用 `mc-sources` skill。

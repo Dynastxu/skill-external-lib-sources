@@ -49,41 +49,7 @@ pwsh -NoProfile -File path/to/scripts/libsrc.ps1 <command> [arguments]
 
 ### Output
 
-`libs` (project scope):
-
-```
-# scope : project (IntelliJ Gradle model)
-# model : C:\Users\...\libraries.xml
-# 86 libraries (84 with sources)
-com.google.guava:guava  33.6.0-jre  src
-...
-```
-
-`find`:
-
-```
-# scope: project (IntelliJ model); 1 of 86 libraries, 1 with sources
-com.google.guava:guava:33.6.0-jre!com.google.common.collect.ImmutableList
-```
-
 `grep` — grouped by file, path in the header, `:` marks a hit, `-` a context line:
-
-```
-# scope: project (IntelliJ model); 1 of 86 libraries, 1 with sources
-== com.google.guava:guava:33.6.0-jre!com/google/common/collect/ImmutableList.java (1 match)
-64- @SuppressWarnings("serial")
-65: public abstract class ImmutableList<E> extends ImmutableCollection<E>
-66-     implements List<E>, RandomAccess {
-```
-
-`show`:
-
-```
-# com.google.guava:guava:33.6.0-jre!com/google/common/collect/ImmutableList.java  (951 lines)
-    1: /*
-    2:  * Copyright (C) 2007 The Guava Authors
-...
-```
 
 `src` means a source jar is available; `bin` means only binary jars are available. Binary-only libraries are skipped by source commands.
 
@@ -108,5 +74,3 @@ com.google.guava:guava:33.6.0-jre!com.google.common.collect.ImmutableList
 - "Print the class" → `show com.google.guava:guava:33.6.0-jre!com.google.common.collect.ImmutableList -Lines 1-80`
 - "List Guava collection classes" → `list com.google.common.collect -Lib guava -Max 20`
 - "Show every cached library on this machine" → `libs -Global`
-
-For Minecraft and NeoForge's own sources, use the `mc-sources` skill instead.

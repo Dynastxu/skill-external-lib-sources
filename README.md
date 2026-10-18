@@ -10,7 +10,7 @@ Principle:
 - **Cache scope (`-Global`):** scan the machine-wide Gradle module cache.
 - Source jars are read as zip streams; `tar` is the read-only fallback. Gradle is not invoked and nothing is extracted.
 
-## Commands
+## Commands Examples
 
 ```powershell
 pwsh -NoProfile -File scripts/libsrc.ps1 info
@@ -23,18 +23,3 @@ pwsh -NoProfile -File scripts/libsrc.ps1 libs -Global -SourcesOnly
 ```
 
 Results use `lib!path` form so `find`/`list` output and `grep` file headers can be passed directly to `show`.
-
-## Tests
-
-```powershell
-Invoke-Pester .\test\libsrc.Tests.ps1
-```
-
-If the sandbox blocks Pester's TestRegistry:
-
-```powershell
-$config = New-PesterConfiguration
-$config.Run.Path = '.\test\libsrc.Tests.ps1'
-$config.TestRegistry.Enabled = $false
-Invoke-Pester -Configuration $config
-```
